@@ -6,3 +6,5 @@
 ### cluster_test - node多进程测试
 ### dinner - puppeteer订晚饭
 ### file_test - 测试file协议加载本地文件
+### font-min-test - 测试font-min提取字体
+### hello-vue3 - vue3项目测试
