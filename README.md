@@ -12,3 +12,6 @@
 ### lz_string_test - lz-string字符串压缩测试
 ### pako_test - pako字符串压缩测试
 ### office_preview - office在线预览测试
+### post_msg - 测试postMessage传图片base64
+### react_demo - react空项目体验
+###

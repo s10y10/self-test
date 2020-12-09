@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id=cvs></canvas>
+  <img id='img' onload="drawImage()" src="./img.png"/>
+  <iframe src="./child.html"></iframe>
+</body>
+<script>
+  function drawImage(){
+    let c = document.getElementById('cvs');
+    let img = document.getElementById('img')
+    let ctx=c.getContext("2d");
+    ctx.drawImage(img,0,0);
+    setTimeout(()=>{
+      let d = c.toDataURL();
+      window.frames[0].postMessage({type:'imgData',data:d},'*')
+    },2000)
+  }
+</script>
+
+</html>
