@@ -10,4 +10,5 @@
 ### hello-vue3 - vue3项目测试
 ### logParse - 临时日志解析
 ### lz_string_test - lz-string字符串压缩测试
-### office_preview 
+### pako_test - pako字符串压缩测试
+### office_preview - office在线预览测试
