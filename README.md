@@ -2,3 +2,4 @@
 
 ### ardemo - 测试webar
 ### canvas_font - 测试canvas加载字体
+### canvas_video_test - 测试canvas加载视频
