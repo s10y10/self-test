@@ -15,3 +15,4 @@
 ### post_msg - 测试postMessage传图片base64
 ### react_demo - react空项目体验
 ### scroll_test - scroll测试
+### sharp_test 测试用sharp处理图片
