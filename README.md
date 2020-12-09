@@ -8,3 +8,4 @@
 ### file_test - 测试file协议加载本地文件
 ### font-min-test - 测试font-min提取字体
 ### hello-vue3 - vue3项目测试
+### logParse - 临时日志解析

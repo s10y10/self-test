@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>log可视化</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="items_con all_center" :style="this.itemsConStyle">
+      <div id="baseContainer" class="drag-scale talqs" style="width:200%;height:100%;position:fixed;">
+        <div :id="item.id" v-for="(item,itemIndex) in currentItems" :class="item.className" :type="item.type"
+          :style="(item.type == 'container'? getContainerStyle(item,1) : item.style)+item.posX+item.posY + 'z-index:' + item.zIndex + ';'"
+          :key="item.id">
+          <div v-if="item.type !== 'group' && item.type !== 'container'" class='content'
+            style='width:100%;height:100%;position:relative;' v-html="item.content">
+          </div>
+          <div v-if="item.type === 'group'" class="content" style='width:100%;height:100%'>
+            <div v-for="(itemContent,index) in item.groupItem" v-html="itemContent.content" :key="index"
+              :class="itemContent.className"
+              :style="itemContent.style+itemContent.posX+itemContent.posY + 'z-index:' + itemContent.zIndex + ';'">
+            </div>
+          </div>
+          <div v-if="item.type === 'container'" class="containerBorder content" style="width: 100%;height: 100%;"
+            :style="getContainerStyle(item,2)">
+            <div class="containerContent" :style='getContainerStyle(item,3)'>
+              <div v-for="(itemContent,index) in item.groupItem" v-html="itemContent.content" :key="index"
+                :class="itemContent.className"
+                :style="itemContent.style+itemContent.posX+itemContent.posY + 'z-index:' + itemContent.zIndex + ';'"
+                :id="itemContent.id">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tabBarContainer" class="page_tab_layout_content" style="position: fixed;width: 100%;"
+        v-html="this.tabContent" :class="this.tabClass">
+      </div>
+    </div>
+    <div style="position: fixed;width: 40px;height: 40px;border: 20px;">{{currentPage}}</div>
+  </div>
+</body>
+<script>
+  let jsFileList = ['jquery-3.2.1.min.js', 'vue.min.js'];
+  let cssFileList = ['talqsTemplate.css', 'common.css'];
+  let view;
+  let commonWebDir = 'https://课件cdn/webkjdsfiles/common_web'
+  let files = ['2.log'];
+
+  window.nextPageHandle = function () {
+    view.gotoNextPage();
+  }
+
+  window.prePageHandler = function () {
+    view.gotoPrePage();
+  }
+
+  //入口
+  loadCss();
+
+  //加载css
+  function loadCss() {
+    if (cssFileList.length == 0) {
+      loadJs();
+      return;
+    }
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.onload = function () {
+      loadCss();
+    }
+    var cssName = cssFileList.pop();
+    var url = commonWebDir + '/dist/js/thumbnail/' + cssName;
+    link.href = url;
+    document.getElementsByTagName("head")[0].appendChild(link);
+  }
+
+  //加载js
+  function loadJs() {
+    if (jsFileList.length == 0) {
+      initVue();
+      return;
+    }
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.onload = function () {
+      loadJs();
+    }
+    var jsName = jsFileList.pop();
+    var url = commonWebDir + '/dist/js/thumbnail/' + jsName;
+    script.src = url;
+    document.body.appendChild(script);
+  }
+
+  // 获取url参数
+  function queryParam(key) {
+    var search = window.location.search.substring(1);
+    if (search.indexOf('?') != -1) {
+      search = search.substr(search.indexOf('?') + 1);
+    }
+    var params = search.split('&');
+    for (var i = 0; i < params.length; i++) {
+      var arr = params[i].split('=');
+      if (arr[0] == key) {
+        return arr[1];
+      }
+    }
+    return null;
+  }
+
+
+
+  // 前面的都加载完之后初始化vue
+  function initVue() {
+    view = new window.Vue({
+      el: "#app",
+      data: {
+        currentItems: [],
+        mainCode: {themeIndex:1},
+        itemsConStyle: '',
+        pageData: null,
+        currentPage: 0,
+        tabContent: '',
+        tabClass: '',
+        totalPageNum: 1,
+      },
+      methods: {
+        //加载字体配置文件
+        loadFontConfig: function () {
+          var self = this;
+          var fontConfigUrl = commonWebDir + '/dist/js/thumbnail/font.config.json';
+          this.ajaxRequest(fontConfigUrl, function (resData) {
+            self.initFont(resData);
+            self.initMathJax();
+          })
+        },
+        //初始化字体样式
+        initFont: function (config) {
+          config = typeof config === 'string' ? JSON.parse(config) : config;
+          var addCss = function (cssText) {
+            var style = document.createElement('style');
+            var textNode = document.createTextNode(cssText);
+            style.appendChild(textNode);
+            var head = document.head || document.getElementsByTagName('head')[0]
+            head.appendChild(style);
+          }
+          var createFontsCss = function () {
+            var cssStr = '';
+            for (var i = 0; i < config.length; i++) {
+              var fontInfo = config[i];
+              var fontTemplate = getFontTemplate(fontInfo);
+              cssStr += fontTemplate + "\r\n";
+            }
+            return cssStr;
+          }
+
+          var ttfTypeTemplate = function (name, dirPath, fontStyle, fontWeight) {
+            var styleStr = fontStyleTemplate(fontStyle);
+            var weight = fontWeightTemplate(fontWeight);
+            return "@font-face{" +
+              "font-family: '" + name + "';" +
+              styleStr +
+              weight +
+              "src:url('" + commonWebDir + "/fonts/" + dirPath + ".ttf');" +
+              "}"
+          }
+
+          var fontWeightTemplate = function (fontWeight) {
+            return fontWeight ? "font-weight: " + fontWeight + ";" : "";
+          }
+
+          var fontStyleTemplate = function (fontStyle) {
+            return fontStyle ? "font-style: " + fontStyle + ";" : "";
+          }
+
+          var getFontTemplate = function (fontInfo) {
+            var name = fontInfo.name;
+            var dirPath = fontInfo.dirPath;
+            var fontStyle = fontInfo.fontStyle;
+            var fontWeight = fontInfo.fontWeight;
+            return ttfTypeTemplate(name, dirPath, fontStyle, fontWeight);
+          }
+
+          var fontsCss = createFontsCss();
+          addCss(fontsCss);
+        },
+        //初始化MathJax
+        initMathJax: function (callBack) {
+          var self = this;
+          this.addScript(commonWebDir + '/dist/js/MathJax-2.6.1/MathJax.js', function () {
+            window.MathJax.Hub.Register.StartupHook("TeX Jax Ready",
+              function () {
+                window.MathJax.InputJax.TeX.prefilterHooks.Add(
+                  function (data) {
+                    if (!data.display) {
+                      data.math = "\\displaystyle{" + data.math + "}"
+                    }
+                  });
+              });
+            window.MathJax.Hub.Config({ jax: ["input/TeX", "output/SVG"], extensions: ["tex2jax.js"], TeX: { extensions: ["AMSmath.js", "AMSsymbols.js", "noErrors.js", "noUndefined.js"] }, tex2jax: { ignoreClass: 'ignore_math', processClass: 'math-content', skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "div", "span"], inlineMath: [["$", "$"], ["\\", "\\"]] }, showMathMenu: false, displayAlign: "left", "SVG": { useGlobalCache: false, linebreaks: { automatic: false, width: "container" }, scale: 80, EqnChunk: 500 } });
+            self.getMainData();
+          });
+        },
+        //渲染公式
+        renderMath: function () {
+          if (window.MathJax) {
+            window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub, document.getElementsByClassName("math-content"), document.getElementById('mathTest')]);
+          }
+        },
+        //加载js
+        addScript: function (scriptName, callback) {
+          var script = document.createElement("script")
+          script.type = "text/javascript";
+          if (script.readyState) { // IE
+            script.onreadystatechange = function () {
+              if (script.readyState == "loaded" || script.readyState == "complete") {
+                script.onreadystatechange = null;
+                if (callback) {
+                  callback();
+                }
+              }
+            };
+          } else { // Others
+            script.onload = function () {
+              if (callback) {
+                callback();
+              }
+            };
+          }
+          script.src = scriptName;
+          var head = document.head || document.getElementsByTagName('head')[0]
+          head.appendChild(script);
+        },
+        //网络请求
+        ajaxRequest: function (url, cbFunc) {
+          var self = this;
+          $.ajax({
+            url: url,
+            type: "get",
+            datatype: "JSON",
+            success: function (resData) {
+              cbFunc(resData);
+            },
+            error: function (data) {
+              self.endCapture();
+            }
+          });
+        },
+        fetchData: function (url) {
+          return new Promise((resolve) => {
+            fetch(url)
+              .then(response => response.text())
+              .then(dataStr => {
+                resolve(dataStr);
+              })
+          })
+        },
+        //获取课件数据
+        getMainData: async function () {
+          let totalData = [];
+          for (let i = 0; i < files.length; i++) {
+            let dataStr = await this.fetchData(files[i])
+            let match = dataStr.match(/\{.*\}/g);
+            if(match){
+              totalData.push(...match);
+            }
+          }
+          let pageData = [];
+          const filterActions = []
+          totalData.forEach(it => {
+            let item = JSON.parse(it);
+            if(item.param.kjPage && item.param.kjPage[0]){
+              item.param.kjPage = JSON.parse(item.param.kjPage[0]);
+            }
+            item.t = new Date(item.date).getTime();
+            item.tStr = new Date(item.t);
+            pageData.push(item);
+          })
+          pageData.sort((pg1, pg2) => {
+            return pg1.t - pg2.t;
+          })
+          console.log(pageData);
+          // 下面是展示视图的部分
+          // this.mainCode.pages = [];
+          // pageData.forEach(data=>{
+          //   this.mainCode.pages.push(data.param.kjPage[0])
+          // })
+          // this.totalPageNum = pageData.length;
+          // this.showPageView();
+        },
+        //翻下一页，由puppeteer调用，也可以测试手动调用
+        gotoNextPage: function () {
+          if (this.currentPage == this.totalPageNum - 1) return;
+          this.currentPage++;
+          this.showPageView();
+        },
+        gotoPrePage: function(){
+          if (this.currentPage == 0) return;
+          this.currentPage--;
+          this.showPageView();
+        },
+        //设置当前页数据
+        showPageView: function () {
+          this.tabContent = '';
+          this.pageData = this.mainCode.pages[this.currentPage];
+          this.currentItems = this.pageData.items;
+          this.setItemsConStyle();
+          if (this.pageData.main.type) {
+            this.tabContent = this.pageData.main.type.content;
+            var className = this.pageData.main.type.className;
+            var themeClass = this.getThemeName();
+            this.tabClass = className + ' ' + themeClass + ' ';
+          }
+          console.log(this.pageData);
+        },
+        //获取主题类名
+        getThemeName: function () {
+          var themeIndex = this.mainCode.themeIndex;
+          return ['theme-deep', 'theme-tint', 'theme-blackboard', 'theme-white'][themeIndex - 1];
+        },
+        //设置页面外层样式
+        setItemsConStyle: function () {
+          this.itemsConStyle = { 'overflow': 'hidden','transform':'translate(-50%,-50%) scale(0.8)', width: this.pageData.main.width, height: this.pageData.main.height, background: this.pageData.main.background }
+        },
+        //获取容器样式
+        getContainerStyle: function (item, type) {
+          var str = '';
+          if (type == 1 || type == 2) {
+            var itemStyleArr = item.style.split(';');
+            var keyValues = {};
+            var tmpItem;
+            for (var i = 0; i < itemStyleArr.length; i++) {
+              tmpItem = itemStyleArr[i];
+              var itemAry = tmpItem.split(':');
+              if (itemAry.length > 1) {
+                keyValues[itemAry[0]] = itemAry[1];
+              }
+            }
+            var needKeys;
+            if (type == 1) {
+              needKeys = ["z-index", "position", "width", "height", "transform", "max-width", "max-height", "opacity"];
+            } else {
+              needKeys = ["position", "box-shadow", "border-style", "border-color", "border-width", "box-sizing", "border-radius", "background-color"];
+            }
+
+            var k;
+            for (var j = 0; j < needKeys.length; j++) {
+              k = needKeys[j]
+              str += (k + ':' + keyValues[k] + ';');
+            }
+          } else if (type == 3) {
+            str = item.content.match(/style="([\s\S]+?)"/)[1];
+          }
+          return str;
+        },
+      },
+      updated: function () {
+        $('.recombinationIndicate').parent().css('display', 'flex');
+        this.renderMath();
+      },
+      mounted: function () {
+        this.loadFontConfig();
+      }
+    })
+  }
+</script>
+
+</html>
