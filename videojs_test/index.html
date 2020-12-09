@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./video-js.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+    <div style="width:800px;height:600px">
+        <video muted id=example-video preload="metadata" class="video-js vjs-default-skin" controls>
+        </video>
+    </div>
+<script src="./video.js"></script>
+<script src="./videojs-contrib-hls.js"></script>
+<script>
+    var player = videojs('example-video');
+    player.src({
+        src: 'http://vod-fz.jiaoyanyun.com/21123a9654664f7497ec1fa6c8fc0eb8/a0232deb74c0ff97ea1e77cd11d23bbd-ld-encrypt-stream.m3u8?auth_key=1601226415-0-0-cb8a3c05efe333241d9c42a89057dbe9',
+        type: 'application/x-mpegURL',
+    });
+    player.on('canplay', (e) => {
+        output();
+        setTimeout(()=>{
+            output();
+            console.log(e.target.querySelector('video').videoHeight)
+        })
+    })
+
+    async function aaa(){
+        await player.play()
+        console.log(2);
+    }
+    function bbb(){
+        console.log(1);
+    }
+
+    aaa();
+    bbb();
+
+    function output(){
+        console.log(player.duration(),player.currentTime())
+    }
+</script>
+</body>
+</html>
