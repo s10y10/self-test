@@ -17,3 +17,7 @@
 ### scroll_test - scroll测试
 ### sharp_test 测试用sharp处理图片
 ### temp_font 临时的字体数据统计
+### videojs_test 测试videojs库播放视频
+### video_test 测试在vue项目中使用mathjax和使用videojs
+### mediainfo_test 测试用wasm解析video的格式
+### ppt_test 测试ppt的xml格式转json
