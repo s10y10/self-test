@@ -23,3 +23,17 @@
 ### ppt_test 测试ppt的xml格式转json
 ### practice 自己试试一些基础知识
 ### doc 一些找来的技术分享文档
+### 腾讯在线教育大前端架构
+- https://static001.geekbang.org/con/55/pdf/3508420849/file/%E6%9B%B9%E6%B5%B7%E6%AD%8C%20%20%E8%85%BE%E8%AE%AF%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%A4%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.pdf
+
+### webrtc实时视频处理基础美颜与视频超分实践
+- https://static001.geekbang.org/con/55/pdf/3195690157/file/%E9%AB%98%E7%BA%AF%20%20WebRTC%20%E5%AE%9E%E6%97%B6%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86%20%E5%9F%BA%E7%A1%80%E7%BE%8E%E9%A2%9C%E4%B8%8E%E8%A7%86%E9%A2%91%E8%B6%85%E5%88%86%E5%AE%9E%E8%B7%B5.pdf
+
+### 在线教育的web音视频架构方案 
+- https://static001.geekbang.org/con/55/pdf/1061226369/file/%E5%88%98%E5%BF%97%E9%BE%99%20%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E7%9A%84%20Web%20%E9%9F%B3%E8%A7%86%E9%A2%91%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.pdf
+
+### wasm在性能及加密场景的深度探索
+- https://static001.geekbang.org/con/55/pdf/185246598/file/%E8%B5%B5%E6%B4%8B%20WebAssembly%20%E5%9C%A8%E6%80%A7%E8%83%BD%E5%8F%8A%E5%8A%A0%E5%AF%86%E5%9C%BA%E6%99%AF%E7%9A%84%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2.pdf
+
+### 中小前端团队的管理之路
+- https://static001.geekbang.org/con/55/pdf/4283873821/file/Scott%20%20%E4%B8%AD%E5%B0%8F%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9F%20Team%20Leader%20%E7%9A%84%E7%AE%A1%E7%90%86%E4%B9%8B%E8%B7%AF.pdf
