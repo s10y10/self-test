@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        .child1{
+            background-color: red;
+        }
+        .child2{
+            background-color: black;
+        }
+        .child3{
+            background-color: blue;
+        }
+        .other{
+            width: 300px;
+            height: 200px;
+            border: 1px solid red;
+            margin: 10px;
+        }
+        .trangle{
+            width: 0px;
+				height: 0px;
+				border-color:   red blue blue red;
+				border-width: 50px 50px 50px 50px;
+				border-style: solid;    
+        }
+        .transform{
+            width: 300px;
+            height: 300px;
+            background: black;
+            transform:translateX(50px);
+            transition: all 2s;
+        }
+        .transform:hover{
+            width: 100px;
+        }
+        .animate{
+            width: 300px;
+            height: 300px;
+            animation-duration: 1s;
+            background: green;
+            animation-name: changeWidth;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 2;
+        }
+
+        @keyframes changeWidth{
+            0%{
+                width:300px
+            }
+            100%{
+                width: 150px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="other"></div>
+    <div style="overflow: hidden;">
+        <div class="child child1"></div>
+        <div class="child child2"></div>
+        <div class="child child3"></div>
+        <span style="background-color: green;">11111</span>
+    </div>
+    <div class="trangle"></div>
+    <div class="transform"></div>
+    <div class="animate"></div>
+    <div>string number array object symbol map set regex null undefined boolean</div>
+</body>
+</html>
