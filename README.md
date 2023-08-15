@@ -1,6 +1,12 @@
 # 自己测试用的项目
 
-### ardemo - 测试webar
+### my-react 体验 react 哲学
+### Proxy-vs-DefineProperty-main proxy 和 defineProperty 的性能对比测试
+### ssr-demo ssr 体验
+### uni-app uniapp 和微信小程序发布体验
+### font-compress 字体压缩项目
+### electron-floor-demo 测试 electron 窗口的层级问题
+### webar_demo 测试webAR
 ### canvas_font - 测试canvas加载字体
 ### canvas_video_test - 测试canvas加载视频
 ### cluster_test - node多进程测试
@@ -23,6 +29,9 @@
 ### ppt_test 测试ppt的xml格式转json
 ### practice 自己试试一些基础知识
 ### doc 一些找来的技术分享文档
+
+### vue开发electron https://blog.51cto.com/u_15091660/2603989
+
 ### 腾讯在线教育大前端架构
 - https://static001.geekbang.org/con/55/pdf/3508420849/file/%E6%9B%B9%E6%B5%B7%E6%AD%8C%20%20%E8%85%BE%E8%AE%AF%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%A4%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.pdf
 
