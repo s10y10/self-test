@@ -7,16 +7,16 @@
 - electron-floor-demo 测试 electron 窗口的系统层级问题
 - file-test 测试file协议加载本地文件
 - font-spider-test 测试用字蛛提取字体
+- font-min-test 测试font-min提取字体
+- log-parse 临时日志解析
+- lz-string-test 使用lz-string字符串压缩测试
+
 
 ### my-react 体验 react 哲学
 ### Proxy-vs-DefineProperty-main proxy 和 defineProperty 的性能对比测试
 ### ssr-demo ssr 体验
 ### uni-app uniapp 和微信小程序发布体验
 ### webar_demo 测试webAR
-### font-min-test - 测试font-min提取字体
-### hello-vue3 - vue3项目测试
-### logParse - 临时日志解析
-### lz_string_test - lz-string字符串压缩测试
 ### pako_test - pako字符串压缩测试
 ### office_preview - office在线预览测试
 ### post_msg - 测试postMessage传图片base64

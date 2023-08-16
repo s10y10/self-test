@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcss.com/lz-string/1.4.4/lz-string.js"></script>
+    <script>
+      var string = `阿莱克斯就看了撒娇打了卡技术大声点；金啊摔看了多久啊sd阿斯顿健康啊升级到了卡升级的卡拉斯京达拉斯空间d
+            阿斯利康多久阿斯利康觉得sadly金啊摔多久奥克兰市多久卡拉斯京打了卡升级的了卡升级的了卡升级打开拉萨尽量快点啊asdjal阿斯科利就多久啊摔dalkjdlkjallkasjdlkajlkwjdlkj了卡技术打了卡技术的轮廓阿里课件课件啊卡拉斯京达拉斯空间的撒了卡上多久`;
+      alert('样本大小为：' + string.length);
+      var compressed = LZString.compress(string);
+      console.log(compressed);
+      alert('压缩样本的大小为：' + compressed.length);
+      string = LZString.decompress(compressed);
+      alert('解压后文字内容：' + string);
+    </script>
+  </body>
+</html>
