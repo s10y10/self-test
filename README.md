@@ -18,6 +18,7 @@
 - post-msg-base64 - 测试postMessage传图片base64
 - ppt-test 测试ppt的xml格式转json
 - Proxy-vs-DefineProperty-main proxy 和 defineProperty 的性能对比测试
+- qiankun-test 测试qiankun微前端框架
 - scroll-test - scroll测试
 - sharp-test 测试用sharp处理图片
 - ssr-demo ssr 体验
