@@ -1,0 +1,33 @@
+<!--
+ * @Author: songyang
+ * @Date: 2021-02-26 18:17:09
+ * @LastEditTime: 2021-05-07 16:21:24
+ * @LastEditors: songyang
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <style>
+      #handPoint {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: red;
+        border: 1px solid #fff;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <video id="videoid" style="width: 320px; height: 240px; display: none" ;></video>
+    <canvas id="canvasid" style="width: 320px; height: 240px; position: absolute; left: 0; top: 0"></canvas>
+    <div id="handPoint"></div>
+  </body>
+</html>

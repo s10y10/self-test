@@ -1,0 +1,152 @@
+@mixin item-act {
+  content: '';
+  border: 8px solid #ffffff;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  position: absolute;
+  left: -16px;
+  top: -16px;
+  border-radius: 32px;
+}
+
+@mixin item-img-base {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+}
+.item-image,
+.item-gif {
+  position: absolute;
+  .content {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.item-text {
+  position: absolute;
+  word-break: break-word;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: left;
+  text-decoration: none;
+  color: #000000;
+  text-decoration-skip-ink: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  .content-box {
+    position: relative;
+    width: 100%;
+    min-height: 20px;
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+    .item-text-placeholder {
+      position: absolute;
+      left: 0px;
+      top: 50%;
+      pointer-events: none;
+      opacity: 0.7;
+      word-break: keep-all;
+      white-space: nowrap;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.drag-option {
+  position: absolute;
+  word-break: break-word;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+  text-decoration-skip-ink: none;
+  border-radius: 24px;
+  border: 8px solid rgba(0, 0, 0, 0.3);
+  &.dragging {
+    opacity: 0.6;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 8px;
+    img {
+      @include item-img-base;
+    }
+  }
+}
+
+.drag-place {
+  position: absolute;
+  word-break: break-word;
+  font-size: 30px;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: #000000;
+  text-decoration-skip-ink: none;
+  border-radius: 24px;
+  text-align: center;
+  border: 8px solid rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.05);
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    img {
+      @include item-img-base;
+    }
+  }
+  &.active {
+    border: 8px solid #5878f9;
+    background: #ffffff;
+  }
+  &.complete {
+    background: #ffffff;
+    border: 8px solid #e7ebee;
+  }
+  &.dragging {
+    background-clip: content-box;
+    background: #fff9e0;
+    border-radius: 24px;
+    border: 8px solid #ffca00;
+    &::before {
+      @include item-act;
+    }
+  }
+}
+.drag-option {
+  * {
+    pointer-events: none;
+  }
+  .drag-option-content-box {
+    height: 100%;
+  }
+  &.active {
+    border: 8px solid #5878f9;
+    background: #ffffff;
+    .drag-option-content-box::before {
+      @include item-act;
+    }
+  }
+  &.hover {
+    background: #fff9e0;
+    border: 8px solid yellow;
+  }
+}

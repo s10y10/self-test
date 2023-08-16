@@ -4,6 +4,8 @@
 - canvas-font 测试使用Font Loading API加载字体，并使用canvas绘制字体文字
 - canvas-video-test 测试canvas加载视频
 - cluster-test node多进程测试
+- demo-handtrack 手势识别拖拽页面元素demo
+- demo-tracking-face-cube 面部识别控制立方体demo
 - dinner 使用puppeteer订晚饭
 - electron-floor-demo 测试 electron 窗口的系统层级问题
 - file-test 测试file协议加载本地文件

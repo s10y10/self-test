@@ -1,0 +1,92 @@
+html,
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+  background: #eef2f6;
+  font-size: 14px !important;
+  color: #2e3458;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input::placeholder {
+  color: #cbccd5 !important;
+}
+textarea::placeholder {
+  color: #cbccd5 !important;
+}
+textarea {
+  resize: none;
+}
+.el-dialog .el-dialog__body,
+.cs-scrollbar {
+  $--scrollbar-thumb-background: rgba(161, 163, 180, 0.2);
+  $--scrollbar-track-background: #f6f8fc;
+
+  &::-webkit-scrollbar {
+    z-index: 11;
+    width: 4px;
+
+    &-thumb {
+      border-radius: 4px;
+      width: 4px;
+      background: $--scrollbar-thumb-background;
+    }
+
+    &-corner {
+      background: $--scrollbar-track-background;
+    }
+
+    &-track {
+      background: $--scrollbar-track-background;
+
+      &-piece {
+        background: $--scrollbar-track-background;
+        width: 4px;
+      }
+    }
+  }
+}
+
+.el-scrollbar__bar {
+  bottom: 0;
+  right: 0;
+  background-color: #f6f8fc;
+  &.is-horizontal {
+    height: 4px !important;
+    left: 0;
+  }
+
+  &.is-vertical {
+    width: 4px !important;
+    top: 0;
+  }
+
+  .el-scrollbar__thumb {
+    background-color: rgba(161, 163, 180, 0.2);
+    &:hover {
+      background-color: rgba(161, 163, 180, 0.2);
+    }
+  }
+}
+.el-popper.is-dark .el-popper__arrow:before,
+.el-popper.is-dark {
+  background: #6c6d70 !important;
+}
+
+.icon {
+  display: inline-block;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
