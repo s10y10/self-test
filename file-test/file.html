@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta id="GoH5ViewPort" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no ">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title></title>
-    <link rel="shortcut icon" href="static/favicon.png">
-    </div>
-</head>
-<body style="background: black;">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试file协议加载数据</title>
+  </head>
+  <body>
     <script>
-        function fetchDataWithFileMode () {
-            let fileName = `./2c44eac054be4c57b1687a2e2f1b33cb.js`;
-            import(fileName).then((data)=>{
-                console.log(data);
-            })
-        }
-        fetchDataWithFileMode();
+      // 并没有什么好办法直接在file协议下加载json
+      // 最后的办法是将json的数据放到一个js文件中并挂在window的一个全局变量上
+      // 通过script标签来加载
+      const script = document.createElement('script');
+      script.src = 'file:///C:/workspace/own/self-test/file-test/data.js';
+      script.onload = testDemo;
+      document.body.appendChild(script);
+
+      function testDemo(e) {
+        console.log(window.pagesData);
+      }
     </script>
-</body>
-</html> 
+  </body>
+</html>
