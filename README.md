@@ -1,5 +1,6 @@
 # 自己测试用的项目
 
+- base-frontend 一些前端基础
 - canvas-font 测试使用Font Loading API加载字体，并使用canvas绘制字体文字
 - canvas-video-test 测试canvas加载视频
 - cluster-test node多进程测试
@@ -9,29 +10,24 @@
 - font-spider-test 测试用字蛛提取字体
 - font-min-test 测试font-min提取字体
 - log-parse 临时日志解析
-- lz-string-test 使用lz-string字符串压缩测试
+- lz-string-test 使用lz-string压缩字符串测试
+- mediainfo-test 测试用wasm解析video的格式
+- my-react 体验 react 哲学
+- office-preview office在线预览测试
+- pako-test 使用pako压缩字符串测试
+- post-msg-base64 - 测试postMessage传图片base64
+- ppt-test 测试ppt的xml格式转json
+- Proxy-vs-DefineProperty-main proxy 和 defineProperty 的性能对比测试
+- scroll-test - scroll测试
+- sharp-test 测试用sharp处理图片
+- ssr-demo ssr 体验
+- uni-app uniapp框架和微信小程序发布体验
+- videojs-test 测试videojs库播放视频
+- tiny5 测试使用tiny5编辑器
+- webar-demo 测试webAR
 
-
-### my-react 体验 react 哲学
-### Proxy-vs-DefineProperty-main proxy 和 defineProperty 的性能对比测试
-### ssr-demo ssr 体验
-### uni-app uniapp 和微信小程序发布体验
-### webar_demo 测试webAR
-### pako_test - pako字符串压缩测试
-### office_preview - office在线预览测试
-### post_msg - 测试postMessage传图片base64
-### react_demo - react空项目体验
-### scroll_test - scroll测试
-### sharp_test 测试用sharp处理图片
-### temp_font 临时的字体数据统计
-### videojs_test 测试videojs库播放视频
-### video_test 测试在vue项目中使用mathjax和使用videojs
-### mediainfo_test 测试用wasm解析video的格式
-### ppt_test 测试ppt的xml格式转json
-### practice 自己试试一些基础知识
-### doc 一些找来的技术分享文档
-
-### vue开发electron https://blog.51cto.com/u_15091660/2603989
+### vue开发electron 
+- https://blog.51cto.com/u_15091660/2603989
 
 ### 腾讯在线教育大前端架构
 - https://static001.geekbang.org/con/55/pdf/3508420849/file/%E6%9B%B9%E6%B5%B7%E6%AD%8C%20%20%E8%85%BE%E8%AE%AF%E5%9C%A8%E7%BA%BF%E6%95%99%E8%82%B2%E5%A4%A7%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E4%B9%8B%E8%B7%AF.pdf
